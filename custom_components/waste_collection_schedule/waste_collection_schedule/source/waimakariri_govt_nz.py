@@ -9,9 +9,9 @@ TITLE = "Waiamakariri District Council"
 DESCRIPTION = "Source for Waimakariri District Council, New Zealand. Finds both general, organic and recycling dates."
 URL = "https://rethinkrubbish.waimakariri.govt.nz/s/#calendar"  # Insert url to service homepage. URL will show up in README.md and info.md
 TEST_CASES = { 
-    "TestName1": {"arg1": 1, "arg2": "Bell st", "arg3": "Rangiora", "arg4": 7400}, # Collection Day & Week: Wednesday Week 1
-    "TestName2": {"arg1": 4, "arg2": "Reeves rd", "arg3": "Rangiora", "arg4": 7400}, # Collection Day & Week: Wednesday Week 2
-    "TestName3": {"arg1": 10, "arg2": "Kawakawa st", "arg3": "Pegasus", "arg4": 7612}, # Collection Day & Week: Monday Week 2
+    "TestName1": {"houseNumber": 1, "streetName": "Bell st", "town": "Rangiora", "postcode": 7400}, # Collection Day & Week: Wednesday Week 1
+    "TestName2": {"houseNumber": 4, "streetName": "Reeves rd", "town": "Rangiora", "postcode": 7400}, # Collection Day & Week: Wednesday Week 2
+    "TestName3": {"houseNumber": 10, "streetName": "Kawakawa st", "town": "Pegasus", "postcode": 7612}, # Collection Day & Week: Monday Week 2
 }
 
 API_URL = "https://rethinkrubbish.waimakariri.govt.nz/s/sfsites/aura"
@@ -21,7 +21,7 @@ ICON_MAP = {
     "ORGANIC": "mdi:leaf",
 }
 
-# Freqeuncy of collections
+# Frequency of collections
 FREQUENCY_MAP = {
     "Weekly": 7,
     "Fortnightly": 14
@@ -116,12 +116,7 @@ class CouncilReturnValue:
 
 
 class Source:
-    def __init__(self, arg1, arg2, arg3, arg4):
-        houseNumber = arg1
-        streetName = arg2
-        town = arg3
-        postcode = arg4
-
+    def __init__(self, houseNumber, streetName, town, postcode):
         self.api = WaimakaririApiInterface(houseNumber, streetName, town, postcode)
 
     def fetch(self):
@@ -139,9 +134,9 @@ class Source:
             while collectionDate < endDate:
                 entries.append(
                     Collection(
-                        date = collectionDate,
-                        t = "General Waste",
-                        icon = ICON_MAP.get("GENERALWASTE")
+                        date=collectionDate,
+                        t="General Waste",
+                        icon=ICON_MAP.get("GENERALWASTE")
                     )
                 )
                 collectionDate += datetime.timedelta(days=frequencyInDays)
@@ -153,9 +148,9 @@ class Source:
             while collectionDate < endDate:
                 entries.append(
                     Collection(
-                        date = collectionDate,
-                        t = "Recycle",
-                        icon = ICON_MAP.get("RECYCLE")
+                        date=collectionDate,
+                        t="Recycle",
+                        icon=ICON_MAP.get("RECYCLE")
                     )
                 )
                 collectionDate += datetime.timedelta(days=frequencyInDays)
@@ -167,9 +162,9 @@ class Source:
             while collectionDate < endDate:
                 entries.append(
                     Collection(
-                        date = collectionDate,
-                        t = "Organic",
-                        icon = ICON_MAP.get("ORGANIC")
+                        date=collectionDate,
+                        t="Organic",
+                        icon=ICON_MAP.get("ORGANIC")
                     )
                 )
                 collectionDate += datetime.timedelta(days=frequencyInDays)
