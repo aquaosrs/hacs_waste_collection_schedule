@@ -1,6 +1,7 @@
 import http.client
 import urllib.parse
 import json
+import ssl
 
 import datetime
 from waste_collection_schedule import Collection
@@ -29,7 +30,11 @@ FREQUENCY_MAP = {
 
 class WaimakaririApiInterface:
     def __init__(self, houseNumber, streetName, town, postcode):
-        self.conn = http.client.HTTPSConnection("rethinkrubbish.waimakariri.govt.nz")
+        context = ssl.create_default_context()
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE
+
+        self.conn = http.client.HTTPSConnection("rethinkrubbish.waimakariri.govt.nz", context=context)
 
         self.payload = self.createPayload(houseNumber, streetName, town, postcode)
         
