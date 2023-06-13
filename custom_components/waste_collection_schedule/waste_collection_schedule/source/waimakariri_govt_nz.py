@@ -9,9 +9,9 @@ TITLE = "Waiamakariri District Council"
 DESCRIPTION = "Source for Waimakariri District Council, New Zealand. Finds both general, organic and recycling dates."
 URL = "https://rethinkrubbish.waimakariri.govt.nz/s/#calendar"  # Insert url to service homepage. URL will show up in README.md and info.md
 TEST_CASES = { 
-    "TestName1": {"houseNumber": 1, "streetName": "Bell st", "town": "Rangiora", "postcode": 7400}, # Collection Day & Week: Wednesday Week 1
-    "TestName2": {"houseNumber": 4, "streetName": "Reeves rd", "town": "Rangiora", "postcode": 7400}, # Collection Day & Week: Wednesday Week 2
-    "TestName3": {"houseNumber": 10, "streetName": "Kawakawa st", "town": "Pegasus", "postcode": 7612}, # Collection Day & Week: Monday Week 2
+    "WednesdayWeek1": {"houseNumber": 1, "streetName": "Bell st", "town": "Rangiora", "postcode": 7400}, # Collection Day & Week: Wednesday Week 1
+    "WednesdayWeek2": {"houseNumber": 4, "streetName": "Reeves rd", "town": "Rangiora", "postcode": 7400}, # Collection Day & Week: Wednesday Week 2
+    "MondayWeek2": {"houseNumber": 10, "streetName": "Kawakawa st", "town": "Pegasus", "postcode": 7612}, # Collection Day & Week: Monday Week 2
 }
 
 API_URL = "https://rethinkrubbish.waimakariri.govt.nz/s/sfsites/aura"
